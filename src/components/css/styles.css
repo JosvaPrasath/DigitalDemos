@@ -1,0 +1,71 @@
+body {
+    color: #000 !important;
+}
+
+a {
+    text-decoration: none;
+}
+a:hover, a:active, a:visited {
+    text-decoration: none !important;
+}
+
+nav {
+    background-color: #6eb4ee !important;
+}
+nav ul a {
+    font-size: 18px !important;
+}
+
+.product-container {
+    margin-top: 75px !important;
+}
+
+.product-container h3, .product-container h5 {
+    color: #080108 !important;
+}
+
+.card {
+    width: 250px;
+    float: left;
+    margin: .5rem 0 1rem 2rem !important;
+    height: 300px;
+    padding-left: 10px;
+}
+
+.card .card-image {
+    width: 100px !important;
+    float: left;
+    margin-right: 15px;
+}
+
+.card .card-content .card-title {
+    color: #000;
+    font-size: 14px !important;
+}
+
+.card .card-content p {
+    color: #3f053e;
+}
+
+nav i.material-icons {
+    line-height: 40px !important;
+}
+
+.btn-floating.halfway-fab {
+    bottom: 20px !important;
+}
+
+.collection .collection-item {
+    color: #000 !important;
+    border: 1px solid #ccc;
+    margin-right: 15px !important;
+}
+
+.collection .collection-item .item-img {
+    width: 200px;
+    height: 275px;
+}
+.collection .collection-item .item-img img {
+    width: 100%;
+    height: 100%;
+}
