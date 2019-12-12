@@ -61,7 +61,6 @@ class Cart extends Component {
                         {addedItems}
                     </ul>
                 </div>
-                
             </div>
         )
     }
