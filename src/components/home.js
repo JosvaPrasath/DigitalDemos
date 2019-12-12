@@ -47,7 +47,7 @@ class Home extends Component {
         })
         return (
             <div className="container product-container">
-                <h3 className="center">Our items</h3>
+                <h3 className="center"> Shop our products </h3>
                 <div className="box">
                     {itemList}
                 </div>
