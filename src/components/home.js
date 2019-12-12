@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import "./css/styles.css";
 
-import { addToList } from './actions/cart-actions';
+import { addToList, removeFromList } from './actions/cart-actions';
 
  class Home extends Component {
 
-    handleClick = (id) => {
+    handleAdd = (id) => {
         this.props.addToList(id);
+    }
+
+    handleRemove = (id) => {
+        this.props.removeFromList(id);
     }
    
     render(){
@@ -20,8 +24,11 @@ import { addToList } from './actions/cart-actions';
 
                         <div className="card-content">
                         <span className="card-title">{item.name}</span>
+                            <span to="/" className="btn-floating halfway-left waves-effect waves-light red">
+                                <i className="material-icons" onClick={()=>{this.handleRemove(item.id)}}>remove</i>
+                            </span>
                             <span to="/" className="btn-floating halfway-fab waves-effect waves-light red">
-                                <i className="material-icons" onClick={()=>{this.handleClick(item.id)}}>add</i>
+                                <i className="material-icons" onClick={()=>{this.handleAdd(item.id)}}>add</i>
                             </span>
                             <p>{item.type}</p>
                             <p><b>Price: {item.price}$</b></p>
@@ -47,7 +54,8 @@ const mapStateToProps = (state)=>{
 
   const mapDispatchToProps = (dispatch)=>{
     return {
-      addToList: (id) => {dispatch(addToList(id))}
+      addToList: (id) => {dispatch(addToList(id))},
+      removeFromList: (id) => {dispatch(removeFromList(id))}
     }
   }
 

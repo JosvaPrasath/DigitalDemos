@@ -55,6 +55,12 @@ nav i.material-icons {
     bottom: 20px !important;
 }
 
+.btn-floating.halfway-left {
+    position: absolute;
+    right: 75px;
+    bottom: 20px;
+}
+
 .collection .collection-item {
     color: #000 !important;
     border: 1px solid #ccc;
@@ -68,4 +74,21 @@ nav i.material-icons {
 .collection .collection-item .item-img img {
     width: 100%;
     height: 100%;
+}
+
+.cart-icon {
+    display: inline-flex;
+    position: relative;
+}
+.cart-icon i.material-icons {
+    line-height: 56px !important;
+}
+.cart-text {
+    color: #f309cb;
+    font-size: 20px !important;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: -12px;
+    right: -15px;
 }

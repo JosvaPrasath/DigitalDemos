@@ -14,7 +14,7 @@ const Navbar = () => {
                     <ul className="right">
                         <li><Link to="/home"> Home </Link></li>
                         <li><Link to="/cart"> My cart</Link></li>
-                        <li><Link to="/cart"> <i className="material-icons">shopping_cart</i></Link></li>
+                        <li className="cart-icon"> <i className="material-icons"> shopping_cart  </i> <Details /> </li>
                     </ul>
                     <Route exact path="/" component={Home} />
                     <Route path="/home" component={Home} />

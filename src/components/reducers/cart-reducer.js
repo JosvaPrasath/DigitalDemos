@@ -95,7 +95,8 @@ const initialState = {
     }
   ],
   productsInCart: [],
-  total: 0
+  total: 0,
+  count: 0
 };
 
 const cartReducer = (state = initialState, action) => {
@@ -109,7 +110,8 @@ const cartReducer = (state = initialState, action) => {
       addedItem.quantity += 1
       return {
         ...state,
-        total: state.total + addedItem.price
+        total: state.total + addedItem.price,
+        count: state.count + 1
       }
     }
     else {
@@ -120,7 +122,8 @@ const cartReducer = (state = initialState, action) => {
       return {
         ...state,
         productsInCart: [...state.productsInCart, addedItem],
-        total: newTotal
+        total: newTotal,
+        count: state.count + 1
       }
     }
   }
@@ -128,13 +131,14 @@ const cartReducer = (state = initialState, action) => {
     let itemToRemove = state.productsInCart.find(item => action.id === item.id)
     let new_items = state.productsInCart.filter(item => action.id !== item.id)
 
-    //calculating the total
+    //calculating the total and no of items in the cart
     let newTotal = state.total - (itemToRemove.price * itemToRemove.quantity)
-    console.log(itemToRemove)
+    let count = state.count > 0 ? state.count - 1 : 0;
     return {
       ...state,
       productsInCart: new_items,
-      total: newTotal
+      total: newTotal,
+      count: count
     }
   }
   //INSIDE CART COMPONENT
@@ -142,9 +146,11 @@ const cartReducer = (state = initialState, action) => {
     let addedItem = state.items.find(item => item.id === action.id)
     addedItem.quantity += 1
     let newTotal = state.total + addedItem.price
+    
     return {
       ...state,
-      total: newTotal
+      total: newTotal,
+      count: state.count + 1
     }
   }
   if (action.type === SUB_QUANTITY) {
@@ -153,18 +159,22 @@ const cartReducer = (state = initialState, action) => {
     if (addedItem.quantity === 1) {
       let new_items = state.productsInCart.filter(item => item.id !== action.id)
       let newTotal = state.total - addedItem.price
+      let count = state.count > 0 ? state.count - 1 : 0;
       return {
         ...state,
         productsInCart: new_items,
-        total: newTotal
+        total: newTotal,
+        count: count
       }
     }
     else {
       addedItem.quantity -= 1
       let newTotal = state.total - addedItem.price
+      let count = state.count > 0 ? state.count - 1 : 0;
       return {
         ...state,
-        total: newTotal
+        total: newTotal,
+        count: count
       }
     }
 

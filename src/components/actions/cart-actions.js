@@ -10,7 +10,7 @@ export const addToList= (id)=>{
 }
 
 //remove item action
-export const removeItem=(id)=>{
+export const removeFromList=(id)=>{
     return{
         type: REMOVE_FROM_LIST,
         id
