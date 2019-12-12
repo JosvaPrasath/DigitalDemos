@@ -9,7 +9,7 @@ import image8 from "../images/ifb-washing-6kg.jpeg";
 import image9 from "../images/whirlpool-washing-7.2kg.jpeg";
 import image10 from "../images/butterfly-4-jar-750-grinder.jpeg";
 
-import { ADD_TO_LIST, REMOVE_FROM_LIST, SUB_QUANTITY, ADD_QUANTITY, ADD_SHIPPING } from "../actions/types/action-types";
+import { ADD_TO_LIST, REMOVE_FROM_LIST, SUB_QUANTITY, ADD_QUANTITY, ADD_SHIPPING, VIEW_PRODUCT } from "../actions/types/action-types";
 
 const initialState = {
   items: [
@@ -18,6 +18,7 @@ const initialState = {
       name: "Realme C2",
       price: "6,499",
       type: "Mobile",
+      desc: "Say hello to the Realme C2 smartphone whose stylish design encompasses plenty of features, such as a 13 MP + 2 MP rear camera, a 5 MP front camera, and a 4000 mAh battery to make your life simpler.",
       image: image1,
       quantity: 0
     },
@@ -26,6 +27,7 @@ const initialState = {
       name: "Redmi 8A (Sunset Red, 32GB)",
       price: "6,499",
       type: "Mobile",
+      desc: "The Redmi 8A features a 5000-mAh high-capacity battery, so you can watch more videos, click more pictures, play more games on a single charge. What’s more? It also supports 18 W Fast Charge, so you can get back in action, in no time.",
       image: image2,
       quantity: 0
     },
@@ -34,6 +36,7 @@ const initialState = {
       name: "Redmi 7A (Matte Black, 32GB)",
       price: "5,499",
       type: "Mobile",
+      desc: "With the Redmi 7A smartphone, you can access your digital world right in the palm of your hand. It is crafted and designed to ensure smooth operation and seamless performance. It comes with an HD Full Screen Display that enhances your viewing experience. ",
       image: image3,
       quantity: 0
     },
@@ -42,6 +45,7 @@ const initialState = {
       name: "Oppo K1 (Piano Black, 64GB)",
       price: "13,990",
       type: "Mobile",
+      desc: "OPPO K1 brings innovative technologies to your fingertips. With a fast in-screen fingerprint sensor, a powerful Qualcomm Snapdragon 660 AIE processor, a sharp AMOLED display, an AI-powered dual rear camera system and a 3500 mAh battery",
       image: image4,
       quantity: 0
     },
@@ -50,6 +54,7 @@ const initialState = {
       name: "Oppo K1 (Astral blue, 64GB)",
       price: "13,990",
       type: "Mobile",
+      desc: "OPPO K1 brings innovative technologies to your fingertips. With a fast in-screen fingerprint sensor, a powerful Qualcomm Snapdragon 660 AIE processor, a sharp AMOLED display, an AI-powered dual rear camera system and a 3500 mAh battery, this smartphone is built to deliver an impressive performance.",
       image: image5,
       quantity: 0
     },
@@ -58,6 +63,7 @@ const initialState = {
       name: "Godrej 99 L Direct Cool Single Door",
       price: "9,499",
       type: "Refrigerator",
+      desc: "With this Godrej Refrigerator, you won’t run out of space to store your favourite food and beverages. And that’s not all, it uses the Antibacterial Technology to make sure that your stored food, beverages, veggies, etc., stay fresh and aromatic for an extended period of time.",
       image: image6,
       quantity: 0
     },
@@ -66,6 +72,7 @@ const initialState = {
       name: "Whirlpool 190 L Direct Cool Single Door",
       price: "15,240",
       type: "Refrigerator",
+      desc: "This 190 L single-door refrigerator lets you store all your food and beverages efficiently. This refrigerator comes equipped with the 6th sense QuickChill Technology that helps retain the cool temperature for up to nine hours during a power outage.",
       image: image7,
       quantity: 0
     },
@@ -74,6 +81,7 @@ const initialState = {
       name: "IFB Fully Automatic",
       price: "19,990",
       type: "Washing Machine",
+      desc: "This essential home appliance features the Auto Imbalance Vibration Control technology, the Ball Valve Technology, and a Crescent Moon Drum for quick and efficient washing of your laundry.",
       image: image8,
       quantity: 0
     },
@@ -82,6 +90,7 @@ const initialState = {
       name: "Whirlpool 7.2 kg Semi Automatic",
       price: "9,390",
       type: "Washing Machine",
+      desc: "Bring home the Whirlpool Ace Supreme Plus 7.2 kg Semi-Automatic washing machine and keep your clothes clean and fresh from bad odour and bacteria.",
       image: image9,
       quantity: 0
     },
@@ -90,6 +99,7 @@ const initialState = {
       name: "Butterfly Rapid 4 Jar 750 watts 750",
       price: "16,999",
       type: "Mixer/Grinder",
+      desc: "Butterfly Rapid 4 jar mixer grinder comes with a powerful 750W overload protected motor. Whip up chutneys, grind masalas and prepare yummy shakes effortlessly with the Butterfly Rapid Mixer Grinder.",
       image: image10,
       quantity: 0
     }
@@ -191,6 +201,15 @@ const cartReducer = (state = initialState, action) => {
     return {
       ...state,
       total: state.total - 6
+    }
+  }
+
+  if(action.type === VIEW_PRODUCT) {
+    let addedItem = state.items.find(item => item.id === action.id)
+    return {
+      ...state,
+      item: addedItem,
+      count: state.count
     }
   }
 
