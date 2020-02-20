@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import "./css/styles.css";
+import "../css/styles.css";
 
 class ProductDetails extends Component {
     render() {

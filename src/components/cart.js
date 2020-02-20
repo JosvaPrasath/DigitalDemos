@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { removeFromList, addQuantity, subtractQuantity } from './actions/cart-actions'
+import { removeFromList, addQuantity, subtractQuantity } from '../actions/cart-actions';
 
 
 class Cart extends Component {
@@ -69,7 +69,7 @@ class Cart extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        items: state.productsInCart,
+        items: state.productsInCart
     }
 }
 const mapDispatchToProps = (dispatch) => {

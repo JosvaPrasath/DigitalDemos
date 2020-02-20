@@ -4,9 +4,10 @@ import ReactDOM from "react-dom";
 import App from './App.js';
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/css/bootstrap-theme.css";
+import './css/styles.css';
 
 import * as serviceWorker from "./serviceWorker";
-import cartReducer from './components/reducers/cart-reducer';
+import cartReducer from './reducers/cart-reducer';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 

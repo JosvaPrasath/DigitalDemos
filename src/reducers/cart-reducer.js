@@ -9,7 +9,7 @@ import image8 from "../images/ifb-washing-6kg.jpeg";
 import image9 from "../images/whirlpool-washing-7.2kg.jpeg";
 import image10 from "../images/butterfly-4-jar-750-grinder.jpeg";
 
-import { ADD_TO_LIST, REMOVE_FROM_LIST, SUB_QUANTITY, ADD_QUANTITY, ADD_SHIPPING, VIEW_PRODUCT } from "../actions/types/action-types";
+import { LOGIN_USER, ADD_TO_LIST, REMOVE_FROM_LIST, SUB_QUANTITY, ADD_QUANTITY, ADD_SHIPPING, VIEW_PRODUCT } from "../actions/types/action-types";
 
 const initialState = {
   items: [
@@ -106,10 +106,27 @@ const initialState = {
   ],
   productsInCart: [],
   total: 0,
-  count: 0
+  count: 0,
+  loggedIn: false
 };
 
 const cartReducer = (state = initialState, action) => {
+
+  // To check whether the user is logged in or logged out
+
+  if (action.type === LOGIN_USER) {
+    if (action.value) {
+      return {
+        ...state,
+        loggedIn: true
+      }
+    } else {
+      return {
+        ...state,
+        loggedIn: false
+      }
+    }
+  }
 
   //INSIDE HOME COMPONENT
   if (action.type === ADD_TO_LIST) {
@@ -140,23 +157,36 @@ const cartReducer = (state = initialState, action) => {
   if (action.type === REMOVE_FROM_LIST) {
     let itemToRemove = state.productsInCart.find(item => action.id === item.id)
     let new_items = state.productsInCart.filter(item => action.id !== item.id)
+    let count;
 
     //calculating the total and no of items in the cart
-    let newTotal = state.total - (itemToRemove.price * itemToRemove.quantity)
-    let count = state.count > 0 ? state.count - 1 : 0;
-    return {
-      ...state,
-      productsInCart: new_items,
-      total: newTotal,
-      count: count
+    if (itemToRemove) {
+      let newTotal = state.total - (itemToRemove.price * itemToRemove.quantity);
+      count = state.count > 0 ? state.count - 1 : 0;
+      if (itemToRemove.quantity > 0) {
+        return {
+          ...state,
+          productsInCart: new_items,
+          total: newTotal,
+          count: count
+        }
+      }
+    } else {
+      count = state.count;
+      return {
+        ...state,
+        productsInCart: new_items,
+        count: count
+      }
     }
+
   }
   //INSIDE CART COMPONENT
   if (action.type === ADD_QUANTITY) {
     let addedItem = state.items.find(item => item.id === action.id)
     addedItem.quantity += 1
     let newTotal = state.total + addedItem.price
-    
+
     return {
       ...state,
       total: newTotal,
@@ -204,7 +234,7 @@ const cartReducer = (state = initialState, action) => {
     }
   }
 
-  if(action.type === VIEW_PRODUCT) {
+  if (action.type === VIEW_PRODUCT) {
     let addedItem = state.items.find(item => item.id === action.id)
     return {
       ...state,

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 
-import "./css/styles.css";
+import "../css/styles.css";
 
-import { addToList, removeFromList } from './actions/cart-actions';
+import { addToList, removeFromList } from '../actions/cart-actions';
 import ProductDetails from './product-details';
 
 class Home extends Component {

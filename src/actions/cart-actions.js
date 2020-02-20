@@ -1,5 +1,12 @@
-import { ADD_TO_LIST, REMOVE_FROM_LIST, SUB_QUANTITY, ADD_QUANTITY, ADD_SHIPPING, VIEW_PRODUCT } from './types/action-types'
+import { LOGIN_USER, ADD_TO_LIST, REMOVE_FROM_LIST, SUB_QUANTITY, ADD_QUANTITY, ADD_SHIPPING, VIEW_PRODUCT } from './types/action-types'
 
+//view product details action
+export const loginOrLogoutUser=(value)=>{
+    return{
+        type: LOGIN_USER,
+        value
+    }
+}
 
 //add to cart action
 export const addToList= (id)=>{
